@@ -1,0 +1,12 @@
+.CardContent{
+  transition: transform .3s ease-out;
+}
+
+.Card:hover .CardContent{
+  transform: translateY(-1rem);
+
+}
+
+.Card:hover{
+  box-shadow:rgb(10, 7, 7);
+}
