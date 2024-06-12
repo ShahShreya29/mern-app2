@@ -3,8 +3,8 @@ const express = require("express");
 const auth = require("../Config/Auth.js").auth;
 // const userController = require("../Controller/User.Controller.js");
 const AdminOrderController = require("../Controller/AdminOrder.Controller.js");
-const CartController = require("../Controller/Cart.Controller.js");
-const CartItemController = require("../Controller/CartItem.Controller.js");
+// const CartController = require("../Controller/Cart.Controller.js");
+// const CartItemController = require("../Controller/CartItem.Controller.js");
 const OrderController = require("../Controller/Order.controller.js");
 // const ProductController = require("../Controller/Product.Controller.js");
 const ReviewController = require("../Controller/Review.Controller.js");
@@ -25,10 +25,10 @@ router.put("/:orderId/deliver", auth, AdminOrderController.DeliverOrder);
 router.put("/:orderId/canceled", auth, AdminOrderController.CancelOrder);
 router.put("/:orderId/delete", auth, AdminOrderController.DeleteOrder);
 
-router.get("/", auth, CartController.FindUserCart);
-router.put("/add", auth, CartController.AddItemCart);
-router.put("/:id", auth, CartItemController.UpdateCartItem);
-router.delete("/:id", auth, CartItemController.RemoveCartItem);
+// router.get("/", auth, CartController.FindUserCart);
+// router.patch("/add", auth, CartController.AddItemCart);
+// router.patch("/:id", auth, CartItemController.UpdateCartItem);
+// router.delete("/:id", auth, CartItemController.RemoveCartItem);
 
 router.post("/", auth, OrderController.CreateOrders);
 router.get("/user", auth, OrderController.UserOrders);

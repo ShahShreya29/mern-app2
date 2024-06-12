@@ -5,7 +5,7 @@ const cors = require("cors");
 
 const userRouter = require("./Routes/userRoutes.js");
 const productRouter = require("./Routes/productRoutes.js");
-const cartRouter = require("./Routes/Route.js");
+const cartRouter = require("./Routes/cartRoutes.js");
 const orderRouter = require("./Routes/Route.js");
 const adminOrderRouter = require("./Routes/Route.js");
 const cartItemRouter = require("./Routes/Route.js");
