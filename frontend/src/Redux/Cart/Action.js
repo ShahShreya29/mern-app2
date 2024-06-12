@@ -31,8 +31,8 @@ export const GetCartItem = () => async (dispatch) => {
 export const addCartItem = (data) => async (dispatch) => {
   dispatch({ ADD_ITEM_CART_REQUEST });
   try {
-    const { data } = await api.post('/cart/add', data.data);
-    dispatch({ type: ADD_ITEM_CART_SUCCESS, payload: data });
+    const { response } = await api.post('/cart/add', response.data);
+    dispatch({ type: ADD_ITEM_CART_SUCCESS, payload: response.data });
   } catch (error) {
     dispatch({ type: ADD_ITEM_CART_FAIL, payload: error.message });
   }
@@ -41,7 +41,7 @@ export const addCartItem = (data) => async (dispatch) => {
 export const RemoveCartItem = (data) => async (dispatch) => {
   dispatch({ REMOVE_ITEM_REQUEST });
   try {
-    const { data } = await api.delete(`/cartItems/${data.cartItemId}`);
+    const { response } = await api.delete(`/cartItems/${response.cartItemId}`);
     dispatch({ type: REMOVE_ITEM_SUCCESS, payload: data });
   } catch (error) {
     dispatch({ type: REMOVE_ITEM_FAIL, payload: error.message });

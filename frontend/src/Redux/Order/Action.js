@@ -17,9 +17,9 @@ export const API_URL = "http://localhost:8080/api/";
 export const CreateOrder = (data) => async (dispatch) => {
   dispatch({ CREATE_ORDER_REQUEST });
   try {
-    const { data } = await api.post("/orders/", data.address);
-    if (data.id) {
-      data.navigate({ search: `step-3&order id-${data.id}` });
+    const { response } = await api.post("/orders/", response.address);
+    if (response.id) {
+      data.navigate({ search: `step-3&order id-${response.id}` });
     }
 
     dispatch({ type: CREATE_ORDER_SUCCESS, payload: data });

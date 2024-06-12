@@ -8,6 +8,7 @@ import { useNavigate, useParams } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { getProduct } from "../../Redux/Products/Action";
 import { useSelector } from "react-redux";
+import store from "../../Redux/Store/store";
 
 // const product = {
 //   name: "Basic Tee 6-Pack",
@@ -64,9 +65,8 @@ function classNames(...classes) {
   return classes.filter(Boolean).join(" ");
 }
 
-export default function ProductDetails({ product }) {
-  const [selectedColor, setSelectedColor] = useState(product.colors[0]);
-  const [selectedSize, setSelectedSize] = useState(product.sizes[2]);
+export default function ProductDetails() {
+  const [selectedSize, setSelectedSize] = useState();
 
   const navigate = useNavigate();
 
@@ -76,7 +76,8 @@ export default function ProductDetails({ product }) {
 
   const params = useParams();
   const dispatch = useDispatch();
-  const { products } = useSelector((store) => store.product);
+  const { products } = useSelector((store) => store.products);
+
   useEffect(() => {
     // const id = product._id.params.product._id;
     dispatch(getProduct(params.product._id));
@@ -114,11 +115,11 @@ export default function ProductDetails({ product }) {
             ))}
             <li className="text-sm">
               <a
-                href={product.href}
+                href={products.product.href}
                 aria-current="page"
                 className="font-medium text-gray-500 hover:text-gray-600"
               >
-                {product.name}
+                {products.product.name}
               </a>
             </li>
           </ol>
@@ -129,13 +130,13 @@ export default function ProductDetails({ product }) {
           <div className="flex flex-col items-center">
             <div className="overflow-hidden rounded-lg max-w-[30rem] max-h-[35rem]">
               <img
-                src={product.products.image}
-                alt={product.products.title}
+                src={products.product.image}
+                alt={products.product.title}
                 className="h-full w-full object-cover object-center"
               />
             </div>
             <div className="flex flex-wrap space-x-5 justify-center ">
-              {products.images.map((item) => (
+              {products.product.images.map((item) => (
                 <div className="aspect-h-2 aspect-w-3 overflow-hidden rounded-lg max-w-[5rem] max-h-[5rem] mt-5">
                   <img
                     src={item.src}
@@ -151,11 +152,11 @@ export default function ProductDetails({ product }) {
           <div className="lg:col-span-1 max-auto max-w-2xl px-4 pb-16 sm:px-6 lg:max-w-7xl lg:px-8 lg:pb:24">
             <div className="lg:col-span-2 ">
               <h1 className="text-lg lg:text-xl font-semibold">
-                {products.name}
+                {products.product.name}
               </h1>
               <h1 className="text-lg lg:text-xl ">
                 {/* dvfdr.clv,fkivm hvy ufrf fgtr */}
-                {products.title}
+                {products.product.title}
               </h1>
             </div>
 
@@ -164,11 +165,13 @@ export default function ProductDetails({ product }) {
               <h2 className="sr-only">Product information</h2>
 
               <div className="flex space-x-5 item-center text-lg lg:text-xl mt-6">
-                <p font-semibold>2012</p>
+                <p font-semibold>{products.product.price}</p>
                 <p>
-                  <del>2220</del>
+                  <del>{products.product.discountPrice}</del>
                 </p>{" "}
-                <p style={{ color: "green" }}>5% off</p>{" "}
+                <p style={{ color: "green" }}>
+                  {products.product.discountPercent}
+                </p>{" "}
               </div>
 
               {/* Reviews */}

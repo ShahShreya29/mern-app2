@@ -11,6 +11,12 @@ import orderList from "./Components/CheckOut/orderList";
 import Navbar from "./Components/Navbar/Navbar";
 import SignIn from "./Components/Authentication/SignIn";
 import SignUp from "./Components/Authentication/SignUp";
+import Error from "./Components/Error";
+import AdminAddProducts from "../src/Admin/Components/AdminAddProducts";
+import AdminProducts from "../src/Admin/Components/AdminProducts";
+import AdminCustomers from "../src/Admin/Components/AdminCustomers";
+import AdminOrders from "../src/Admin/Components//AdminOrders";
+import Admin from "./Admin/Components/Admin";
 
 function App() {
   return (
@@ -19,7 +25,7 @@ function App() {
         <Navbar />
       </div>
       <Routes>
-        <Route path="/" element={<HomePage />} />
+        {/* <Route path="/" element={<HomePage />} />
         <Route path="/cart" element={<Cart />} />
         <Route
           path="/:LevelOne/:LevelSecond/:LevelThird"
@@ -30,17 +36,21 @@ function App() {
         <Route path="/account/order" element={<orderList />} />
         <Route path="/account/order/:orderId" element={<OrderDetails />} />
         <Route path="/signIn" element={<SignIn />} />
-        <Route path="/signUp" element={<SignUp />} />
+        <Route path="/signUp" element={<SignUp />} /> */}
+        <Route path="/" element={<Admin />}></Route>
+
+        <Route path="/admin/addProduct" element={<AdminAddProducts />} />
+        <Route path="/admin/products" element={<AdminProducts />} />
+        <Route path="/admin/customer" element={<AdminCustomers />} />
+        <Route path="/admin/orders" element={<AdminOrders />} />
+        <Route path="/*" element={<Error />} />
       </Routes>
 
       <div>
         <Footer />
       </div>
-
-      {/* <Admin/> */}
     </>
   );
 }
 
 export default App;
-

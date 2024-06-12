@@ -26,7 +26,7 @@ export const getProducts = (data) => async (dispatch) => {
     pageSize,
   } = data;
   try {
-    const response = await axios.get(`${API_URL}products?color=${colors}&size=${sizes}&minPrice=${minPrice}&maxPrice=${maxPrice}&minDiscount=${minDiscount}&category=${category}&stock=${stock}&sort=${sort}&pageNumber=${pageNumber}&pageSize=${pageSize}`);
+    const response = await axios.get(`http://localhost:8080/api/products?color=${colors}&size=${sizes}&minPrice=${minPrice}&maxPrice=${maxPrice}&minDiscount=${minDiscount}&category=${category}&stock=${stock}&sort=${sort}&pageNumber=${pageNumber}&pageSize=${pageSize}`);
     console.log("product data", response);
     dispatch({ type: GET_PRODUCTS_SUCCESS, payload: response.data });
   } catch (error) {

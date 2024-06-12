@@ -7,10 +7,13 @@ import Button from "@mui/material/Button";
 import Typography from "@mui/material/Typography";
 import "./ProductCard.css";
 import { useNavigate } from "react-router-dom";
+import { useSelector } from "react-redux";
+import store from "../../Redux/Store/store";
 
 
 export default function ProductCard({ product }) {
   const navigate = useNavigate();
+  const {products} = useSelector((store)=>store.products)
 
   return (
     <>
@@ -22,7 +25,7 @@ export default function ProductCard({ product }) {
         <CardMedia
           sx={{ height: 340 }}
           style={{ objectFit: "cover" }}
-          image={product.image}
+          image={products.product.image}
           title="green iguana"
         />
         <CardContent className="CardContent">
@@ -34,13 +37,13 @@ export default function ProductCard({ product }) {
             color="text.secondary"
             style={{ margin: 5 }}
           >
-        {   product.details}
+        {products.product.details}
           </Typography>
           <Typography style={{ margin: 5 }}>
-            ₹{product.price}&nbsp;&nbsp;&nbsp;<del>₹{product.discountPrice}</del>
+            ₹{products.product.price}&nbsp;&nbsp;&nbsp;<del>₹{products.product.discountPrice}</del>
           </Typography>
 
-          <Typography color={"green"}>{product.discountPercent}</Typography>
+          <Typography color={"green"}>{products.product.discountPercent}</Typography>
         </CardContent>
         {/* <CardActions>
         <Button size="small">Share</Button>

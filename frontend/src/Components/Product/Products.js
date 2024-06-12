@@ -25,6 +25,7 @@ import { useLocation, useNavigate, useParams } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { getProducts } from "../../Redux/Products/Action";
 import { Pagination } from "@mui/material";
+import store from "../../Redux/Store/store";
 //import { search } from "../../../../Backend/Routes/Route";
 
 // const color = ["white", "red", "pink", "yellow"];
@@ -105,7 +106,7 @@ export default function Products() {
   const params = useParams();
   const dispatch = useDispatch();
 
-  const {products} = useSelector((store) => store.product);
+  const {products} = useSelector((store)=>store.products)
 
   const handlePagination = (_event, value) => {
     const searchParams = new URLSearchParams(location.search);

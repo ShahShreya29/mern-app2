@@ -36,15 +36,15 @@ const FindUserCart = async (userId) => {
   }
 };
 
-const AddCartItem = async (userId, req) => {
+const AddCartItem = async (user, req) => {
   try {
-    const cart = await Cart.findOne({ user: userId });
+    const cart = await Cart.findOne({ user });
     const product = await Product.findById(req.productId);
 
     const isPresent = await cartItem.findOne({
       cart: cart._id,
       product: product._id,
-      userId,
+      user
     });
 
     if (!isPresent) {
@@ -52,7 +52,7 @@ const AddCartItem = async (userId, req) => {
         product: product._id,
         cart: cart._id,
         qty: 1,
-        userId,
+        user,
         price: product.price,
         size: req.size,
         discountPrice: product.discountPrice,

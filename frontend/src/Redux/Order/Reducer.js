@@ -15,7 +15,7 @@ const initialState = {
 export const OrderReducer = (state = initialState, action) => {
   switch (action.type) {
     case CREATE_ORDER_REQUEST:
-      return {...state, error: null };
+      return { ...state, error: null };
     case CREATE_ORDER_SUCCESS:
       return {
         success: true,
@@ -32,7 +32,7 @@ export const OrderReducer = (state = initialState, action) => {
       return {
         ...state,
         error: null,
-        order: action.payload,
+        orders: action.payload,
       };
 
     case GET_ORDER_FAIL:

@@ -41,7 +41,7 @@ const Admin = () => {
               gap={4}
               p={2}
               sx={{ border: "2px solid grey" }}
-              onClick={navigate("/products")}
+              onClick={navigate("/admin/products")}
             >
               <Button color="secondary" sx={{ m: "2px" }}>
                 <CategoryIcon sx={{ m: "3px" }} />

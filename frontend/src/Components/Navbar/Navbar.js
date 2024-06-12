@@ -29,6 +29,7 @@ import { deepPurple } from "@mui/material/colors";
 import { logout } from "../../Redux/User/authAction";
 // import { GetCartItem } from "../../Redux/Cart/action";
 import TextField from "@mui/material/TextField";
+import store from "../../Redux/Store/store";
 
 const navigation = {
   categories: [
@@ -168,7 +169,7 @@ export default function Navbar() {
   const [open, setOpen] = useState(false);
   const navigate = useNavigate();
   const dispatch = useDispatch();
-  const { auth } = useSelector((store) => store);
+  const { auth } = useSelector((store) => store.auth);
   const [anchorEl, setAnchorEl] = useState(null);
   const openUserMenu = Boolean(anchorEl);
   const jwt = localStorage.getItem("token");
@@ -197,7 +198,7 @@ export default function Navbar() {
     if (location.pathname === "/login" || location.pathname === "/register") {
       navigate(-1);
     }
-  }, [auth.user]);
+  }, [auth]);
 
   const handleLogout = () => {
     handleCloseUserMenu();
@@ -524,7 +525,7 @@ export default function Navbar() {
 
               <div className="ml-auto flex items-center">
                 <div className="hidden lg:flex lg:flex-1 lg:items-center lg:justify-end lg:space-x-6">
-                  {auth.user ? (
+                  {auth ? (
                     <div>
                       <Avatar
                         className="text-white"
