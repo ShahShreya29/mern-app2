@@ -48,7 +48,7 @@ const createProduct = async (data) => {
     qty: data.qty,
     category: LevelThird._id,
   });
-
+console.log(product);
   return await product.save();
 };
 
@@ -68,6 +68,7 @@ const GetProduct = async (productId) => {
   if (!product) {
     throw new Error("Not Found the Product");
   }
+  console.log(product);
   return product;
 };
 
@@ -142,6 +143,7 @@ const GetAllProduct = async (queries) => {
 
   const totalPage = Math.ceil(totalProduct / pageSize);
 
+  console.log(products);
   return { content: products, currentPage: pageNumber, totalPage: totalPage };
 };
 
@@ -163,3 +165,4 @@ module.exports = {
   GetAllProduct,
   AddMultipleProduct
 };
+ 

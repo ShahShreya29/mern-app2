@@ -26,7 +26,6 @@ import { useDispatch, useSelector } from "react-redux";
 import { getProducts } from "../../Redux/Products/Action";
 import { Pagination } from "@mui/material";
 import store from "../../Redux/Store/store";
-//import { search } from "../../../../Backend/Routes/Route";
 
 // const color = ["white", "red", "pink", "yellow"];
 
@@ -51,9 +50,6 @@ const filters = [
       { value: "xl", label: "xl" },
     ],
   },
-];
-
-const filters2 = [
   {
     id: "price",
     name: "price",
@@ -75,6 +71,29 @@ const filters2 = [
     ],
   },
 ];
+
+// const filters2 = [
+//   {
+//     id: "price",
+//     name: "price",
+//     option: [
+//       { value: "100-200", label: "100-200" },
+//       { value: "200-300", label: "200-300" },
+//       { value: "300-400", label: "300-400" },
+//       { value: "400-500", label: "400-500" },
+//     ],
+//   },
+//   {
+//     id: "discount",
+//     name: "discount",
+//     option: [
+//       { value: "10%", label: "10%" },
+//       { value: "20%", label: "20%" },
+//       { value: "30%", label: "300-400" },
+//       { value: "40%", label: "40%" },
+//     ],
+//   },
+// ];
 
 const sortOptions = [
   // { name: "Most Popular", href: "#", current: true },
@@ -103,12 +122,15 @@ export default function Products() {
   const pageNumber = searchParams.get("page") || 1;
   const stock = searchParams.get("stock");
 
+
   const params = useParams();
   const dispatch = useDispatch();
 
-  const {products} = useSelector((store)=>store.products)
+  const { products } = useSelector((store) => store.products);
+  console.log(products)
+  console.log(store.products)
 
-  const handlePagination = (_event, value) => {
+  const handlePagination = (event, value) => {
     const searchParams = new URLSearchParams(location.search);
     searchParams.set("page", value);
     const query = searchParams.toString();
@@ -131,6 +153,7 @@ export default function Products() {
       stock: stock,
     };
     dispatch(getProducts(data));
+    console.log(data);
   }, [
     params.LevelThird,
     colorValue,
@@ -161,13 +184,13 @@ export default function Products() {
     navigate({ search: `?${query}` });
   };
 
-  const handleFilter2 = (sectionId, e) => {
-    const searchParams = new URLSearchParams(location.search);
-    searchParams.set(sectionId, e.target.value);
-    const query = searchParams.toString();
-    navigate({ search: `?${query}` });
-  };
-
+  // const handleFilter2 = (sectionId, e) => {
+  //   const searchParams = new URLSearchParams(location.search);
+  //   searchParams.set(sectionId, e.target.value);
+  //   const query = searchParams.toString();
+  //   navigate({ search: `?${query}` });
+  // };
+  console.log(products.products);
   return (
     <div className="bg-white">
       <div>
@@ -246,7 +269,7 @@ export default function Products() {
                             </h3>
                             <DisclosurePanel className="pt-6">
                               <div className="space-y-6">
-                                {section.options.map((option, optionIdx) => (
+                                {section.option.map((option, optionIdx) => (
                                   <div
                                     key={option.value}
                                     className="flex items-center"
@@ -277,7 +300,7 @@ export default function Products() {
                       </Disclosure>
                     ))}
 
-                    {filters2.map((section) => (
+                    {/* {filters2.map((section) => (
                       <Disclosure
                         as="div"
                         key={section.id}
@@ -333,7 +356,7 @@ export default function Products() {
                           </>
                         )}
                       </Disclosure>
-                    ))}
+                    ))} */}
                   </form>
                 </DialogPanel>
               </TransitionChild>
@@ -356,7 +379,7 @@ export default function Products() {
                       className="-mr-1 ml-1 h-5 w-5 flex-shrink-0 text-gray-400 group-hover:text-gray-500"
                       aria-hidden="true"
                     />
-                  </MenuButton> 
+                  </MenuButton>
                 </div>
 
                 <Transition
@@ -484,7 +507,7 @@ export default function Products() {
                 <div className="flex flex-wrap justify-center py-5">
                   {products.products &&
                     products.products?.content?.map((item) => (
-                      <ProductCard product={item}/>
+                      <ProductCard product={item} />
                     ))}
                 </div>
               </div>

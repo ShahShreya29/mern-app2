@@ -17,12 +17,12 @@ export const API_URL = "http://localhost:8080/api/";
 export const CreateOrder = (data) => async (dispatch) => {
   dispatch({ CREATE_ORDER_REQUEST });
   try {
-    const { response } = await api.post("/orders/", response.address);
+    const { response } = await api.post("/orders/", data.address);
     if (response.id) {
-      data.navigate({ search: `step-3&order id-${response.id}` });
+      data.navigate({ search: `steps-3&order id-${response.id}` });
     }
 
-    dispatch({ type: CREATE_ORDER_SUCCESS, payload: data });
+    dispatch({ type: CREATE_ORDER_SUCCESS, payload: response });
   } catch (error) {
     dispatch({ type: CREATE_ORDER_FAIL, payload: error.message });
   }
@@ -31,8 +31,8 @@ export const CreateOrder = (data) => async (dispatch) => {
 export const GetOrder = (orderId) => async (dispatch) => {
   dispatch({ GET_ORDER_REQUEST });
   try {
-    const { data } = await api.get(`/orders${orderId}`, data);
-    dispatch({ type: GET_ORDER_SUCCESS, payload: data });
+    const { response } = await api.get(`/orders${orderId}`);
+    dispatch({ type: GET_ORDER_SUCCESS, payload: response });
   } catch (error) {
     dispatch({ type: GET_ORDER_FAIL, payload: error.message });
   }

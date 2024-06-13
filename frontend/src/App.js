@@ -25,18 +25,18 @@ function App() {
         <Navbar />
       </div>
       <Routes>
-        {/* <Route path="/" element={<HomePage />} />
+        <Route path="/" element={<HomePage />} />
         <Route path="/cart" element={<Cart />} />
         <Route
           path="/:LevelOne/:LevelSecond/:LevelThird"
           element={<Products />}
         />
-        <Route path="/product/productId" element={<ProductDetails />} />
+        <Route path="/product/:id" element={<ProductDetails />} />
         <Route path="/checkout" element={<CheckOut />} />
         <Route path="/account/order" element={<orderList />} />
         <Route path="/account/order/:orderId" element={<OrderDetails />} />
         <Route path="/signIn" element={<SignIn />} />
-        <Route path="/signUp" element={<SignUp />} /> */}
+        <Route path="/signUp" element={<SignUp />} />
         <Route path="/" element={<Admin />}></Route>
 
         <Route path="/admin/addProduct" element={<AdminAddProducts />} />

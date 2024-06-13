@@ -12,13 +12,12 @@ const FindUserCart = async (req, res) => {
 
 const AddItemCart = async (req, res) => {
   console.log("here");
-  const user = req.userId;
-  console.log("user", user);
+   const userId = req.params.id;
+  console.log("userId", userId);
   const request = req.body;
   try {
-    ("const this is the Add cart Item");
     console.log("here");
-    const cartItems = await CartService.AddCartItem({ user, request });
+    const cartItems = await CartService.AddCartItem({ userId, request });
     return res.status(200).send(cartItems);
   } catch (error) {
     return res.status(500).send({ error: error.message });

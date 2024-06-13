@@ -1,4 +1,5 @@
 const productService = require("../Services/Product.Service.js");
+const mongoose = require('mongoose');
 
 const CreateProduct = async (req, res) => {
   try {
@@ -34,6 +35,12 @@ const UpdateProduct = async (req, res) => {
 
 const GetProduct = async (req, res) => {
   const productId = req.params.id;
+
+  console.log('Product ID:', productId); // Log the product ID
+
+  if (!mongoose.isValidObjectId(productId)) {
+    return res.status(400).send({ error: 'Invalid product ID' });
+  }
   try {
     const getProduct = await productService.GetProduct(productId);
     return res.status(200).send(getProduct);
@@ -45,6 +52,7 @@ const GetProduct = async (req, res) => {
 const GetAllProduct = async (req, res) => {       
   try {
     const getAllProduct = await productService.GetAllProduct(req.query);
+    console.log(getAllProduct);
     return res.status(200).send(getAllProduct);
   } catch (error) {
     return res.status(500).send({ error: error.message });

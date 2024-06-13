@@ -1,6 +1,6 @@
 import {
   ADD_ITEM_CART_FAIL,
-  ADD_ITEM_CART_REQUEST, 
+  ADD_ITEM_CART_REQUEST,
   ADD_ITEM_CART_SUCCESS,
   GET_CART_FAIL,
   GET_CART_REQUEST,
@@ -29,7 +29,7 @@ export const CartReducer = (state = initialState, action) => {
         cartItems: [...state.cartItems, action.payload.cartItems],
       };
     case ADD_ITEM_CART_FAIL:
-      return { ...state, error: null, error: action.payload };
+      return { ...state, error: action.payload };
 
     case GET_CART_REQUEST:
       return { ...state, error: null };
@@ -37,11 +37,12 @@ export const CartReducer = (state = initialState, action) => {
       return {
         ...state,
         error: null,
-        cartItems: [...state.cartItems, action.payload.cartItems],
+        cartItems: action.payload.cartItems,
+        cart: action.payload.cart,
       };
 
     case GET_CART_FAIL:
-      return { ...state, error: null, error: action.payload };
+      return { ...state, error: action.payload };
 
     case REMOVE_ITEM_REQUEST:
     case UPDATE_ITEM_REQUEST:
@@ -58,14 +59,14 @@ export const CartReducer = (state = initialState, action) => {
       return {
         ...state,
         cartItems: state.cartItems.map((item) =>
-          item.id === action.payload ? action.payload : item
+          item.id === action.payload.id ? action.payload : item
         ),
         error: null,
       };
 
     case REMOVE_ITEM_FAIL:
     case UPDATE_ITEM_FAIL:
-      return { ...state, error: null, error: action.payload };
+      return { ...state, error: action.payload };
 
     default:
       return state;

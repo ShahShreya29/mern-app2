@@ -12,14 +12,14 @@ const CreateCart = async (user) => {
   }
 };
 
-const FindUserCart = async (user) => {
+const FindUserCart = async (userId) => {
   try {
-    const cart = await Cart.findOne({ user: user._id });
+    const cart = await Cart.findOne(userId);
     if (!cart) {
       throw new Error("Cart not found for the user.");
     }
     console.log("done", cart);
-    let cartItems = await cartItem.find({ cart: cart._id }).populate("product");
+    let cartItems = await cartItem.find({ cart: cart._id }).populate("products");
 
     if (!cartItems) {
       cartItems = [];
@@ -46,16 +46,7 @@ const FindUserCart = async (user) => {
 
 const AddCartItem = async (userId, req) => {
   try {
-    if (!userId) {
-      throw new Error("User ID is undefined or null.");
-    }
-    const cart = await Cart.findOne({ user: user._id });
-    if (!cart) {
-      // If cart is not found, create a new cart for the user
-      const newCart = await CreateCart(userId);
-      // return AddCartItem(newCart.user, req); // Retry adding the cart item with the new cart
-    }
-
+    const cart = await Cart.findById(userId);
     const product = await Product.findById(req.productId);
 
     const isPresent = await cartItem.findOne({
